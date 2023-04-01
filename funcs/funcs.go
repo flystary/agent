@@ -18,7 +18,7 @@ func BuildMappers() {
 	Mappers = []FuncsAndInterval{
 		{
 			Fs: []func() []*model.MetricValue{
-				CpuMetrics,
+				// CpuMetrics,
 			},
 			Interval: interval,
 		},
