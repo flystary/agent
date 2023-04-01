@@ -3,12 +3,12 @@ hostname = "localhost"
 addr     = "127.0.0.1:6000"
 
 [transfer]
-enabled  = true
+enabled  = false
 addrs    = [ "127.0.0.1:8433", "127.0.0.1:8434" ]
 interval = 60
 timeout  = 1000
 
 [http]
 enabled  = true
-listen   = "0.0.0.0:8080"
+listen   = "0.0.0.0:8181"
 backdoor = false
