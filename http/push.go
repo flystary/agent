@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"net/http"
 
-	// "github.com/flystary/agent/g"
 	"github.com/flystary/aiops/model"
 )
 
