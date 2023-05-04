@@ -46,9 +46,9 @@ func watch() {
 	c := make(chan os.Signal)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM, syscall.SIGINT, syscall.SIGKILL) // 其中 SIGKILL = kill -9 <pid> 可能无法截获
 	go func() {
-		log.Debug("watching stop signals")
+		log.Debug("watching")
 		<-c
-		log.Debug("ready to exit on SIGTERM")
+		log.Debug("readying")
 		os.Exit(1)
 	}()
 }
