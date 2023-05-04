@@ -5,7 +5,6 @@ import (
 	"os"
 	"time"
 
-	"github.com/flystary/agent/collector"
 	"github.com/natefinch/lumberjack"
 	log "github.com/sirupsen/logrus"
 )
@@ -51,6 +50,6 @@ func InitLog(level string) (err error) {
 	}
 	mw := io.MultiWriter(os.Stdout, lumberJackLogger)
 	log.SetOutput(mw)
-	log.SetFormatter(new(collector.LogFormatter))
+	log.SetFormatter(new(LogFormatter))
 	return
 }
