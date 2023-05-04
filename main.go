@@ -36,6 +36,7 @@ func main() {
 	}
 
 	g.InitRootDir()
+
 	go http.Start()
 
 	select {}

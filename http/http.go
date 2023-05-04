@@ -2,8 +2,8 @@ package http
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
+    log "github.com/sirupsen/logrus"
 
 	"github.com/flystary/agent/g"
 )
@@ -68,5 +68,6 @@ func Start() {
 	}
 
 	log.Println("listening", addr)
+
 	log.Fatalln(s.ListenAndServe())
 }

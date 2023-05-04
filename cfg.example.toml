@@ -17,17 +17,4 @@ backdoor = false
 size = 10
 path = "/var/log/"
 
-[plugins]
-enabled = true
-dir     = ""
-zipdir  = ""
-logdir  = ""
 
-[plugin]
-id      = 111
-config  = ""
-name    = ""
-category    = ""
-filename    = ""
-downloadurl = ""
-filemd5     =""

@@ -1,31 +1,13 @@
 package g
 
 import (
-	"log"
 	"os"
 	"sync"
 
 	"github.com/BurntSushi/toml"
 	"github.com/toolkits/file"
+    log "github.com/sirupsen/logrus"
 )
-
-
-type Plugins struct {
-	Enabled bool   `json:"enabled"`
-	Dir     string `json:"dir"`
-	ZipDir  string `json:"zip_dir"`
-	LogDir  string `json:"logs"`
-}
-
-type Plugin struct {
-	Id          int64  `json:"id"`
-	Config      string `json:"config"`
-	Name        string `json:"name"`
-	Category    string `json:"category"`
-	FileName    string `json:"fileName"`
-	DownloadUrl string `json:"downloadUrl"`
-	FileMd5     string `json:"fileMd5"`
-}
 
 type Log struct {
 	Size int
@@ -52,8 +34,6 @@ type Global struct {
 	Transfer *Transfer
 	Http     *Http
 	Log      *Log
-	Plugin   *Plugin
-	Plugins  *Plugins
 }
 
 var (

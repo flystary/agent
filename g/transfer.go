@@ -1,10 +1,10 @@
 package g
 
 import (
-	"log"
 	"math/rand"
 	"sync"
 	"time"
+    log "github.com/sirupsen/logrus"
 
 	"github.com/flystary/aiops/model"
 )
