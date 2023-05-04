@@ -78,28 +78,28 @@ func IP() string {
 
 func ParseConfig(cfg string) {
 	if cfg == "" {
-		log.Fatalln("use -c to specify configuration file")
+		log.Error("use -c to specify configuration file")
 	}
 
 	if !file.IsExist(cfg) {
-		log.Fatalln("config file:", cfg, "is not existent. maybe you need `mv cfg.example.toml cfg.toml`")
+		log.Error("config file:", cfg, "is not existent. maybe you need `mv cfg.example.toml cfg.toml`")
 	}
 
 	ConfigFile = cfg
 
 	configContent, err := file.ToTrimString(cfg)
 	if err != nil {
-		log.Fatalln("read config file:", cfg, "fail:", err)
+		log.Error("read config file:", cfg, "fail:", err)
 	}
 
 	var g Global
 	_, err = toml.Decode(configContent, &g)
 	if err != nil {
-		log.Fatalln("parse config file:", cfg, "fail:", err)
+		log.Error("parse config file:", cfg, "fail:", err)
 	}
 
 	lock.Lock()
 	defer lock.Unlock()
 	config = &g
-	log.Println("read config file:", cfg, "successfully")
+	log.Debug("read config file:", cfg, "successfully")
 }
