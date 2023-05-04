@@ -1,4 +1,4 @@
-debug = true
+debug    = true
 hostname = "localhost"
 addr     = "127.0.0.1:6000"
 
@@ -12,3 +12,22 @@ timeout  = 1000
 enabled  = true
 listen   = "0.0.0.0:8181"
 backdoor = false
+
+[log]
+size = 10
+path = "/var/log/"
+
+[plugins]
+enabled = true
+dir     = ""
+zipdir  = ""
+logdir  = ""
+
+[plugin]
+id      = 111
+config  = ""
+name    = ""
+category    = ""
+filename    = ""
+downloadurl = ""
+filemd5     =""

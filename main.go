@@ -1,11 +1,15 @@
 package main
 
 import (
-	"github.com/flystary/agent/g"
 	"flag"
 	"fmt"
 	"os"
+	"os/signal"
+	"syscall"
+
+	"github.com/flystary/agent/g"
 	"github.com/flystary/agent/http"
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
@@ -27,8 +31,23 @@ func main() {
 		g.InitLog("info")
 	}
 
+	if g.SystemType != "windows" {
+		watch()
+	}
+
 	g.InitRootDir()
 	go http.Start()
 
 	select {}
+}
+
+func watch() {
+	c := make(chan os.Signal)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM, syscall.SIGINT, syscall.SIGKILL) // 其中 SIGKILL = kill -9 <pid> 可能无法截获
+	go func() {
+		log.Info("watching stop signals")
+		<-c
+		log.Info("ready to exit on SIGTERM")
+		os.Exit(1)
+	}()
 }

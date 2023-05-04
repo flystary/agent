@@ -9,6 +9,29 @@ import (
 	"github.com/toolkits/file"
 )
 
+
+type Plugins struct {
+	Enabled bool   `json:"enabled"`
+	Dir     string `json:"dir"`
+	ZipDir  string `json:"zip_dir"`
+	LogDir  string `json:"logs"`
+}
+
+type Plugin struct {
+	Id          int64  `json:"id"`
+	Config      string `json:"config"`
+	Name        string `json:"name"`
+	Category    string `json:"category"`
+	FileName    string `json:"fileName"`
+	DownloadUrl string `json:"downloadUrl"`
+	FileMd5     string `json:"fileMd5"`
+}
+
+type Log struct {
+	Size int
+	Path string
+}
+
 type Transfer struct {
 	Enabled  bool
 	Addrs    []string
@@ -28,12 +51,15 @@ type Global struct {
 	Addr     string
 	Transfer *Transfer
 	Http     *Http
+	Log      *Log
+	Plugin   *Plugin
+	Plugins  *Plugins
 }
 
 var (
 	ConfigFile string
 	config     *Global
-	lock   = new(sync.RWMutex)
+	lock       = new(sync.RWMutex)
 )
 
 func Config() *Global {
@@ -86,7 +112,7 @@ func ParseConfig(cfg string) {
 		log.Fatalln("read config file:", cfg, "fail:", err)
 	}
 
-	var g  Global
+	var g Global
 	_, err = toml.Decode(configContent, &g)
 	if err != nil {
 		log.Fatalln("parse config file:", cfg, "fail:", err)
